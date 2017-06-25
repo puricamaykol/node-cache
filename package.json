@@ -1,0 +1,21 @@
+{
+  "name": "node-cache",
+  "version": "1.0.0",
+  "description": "Node Adapter for cache",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "cache",
+    "redis",
+    "memcached"
+  ],
+  "author": "Maykol Purica <puricamaykol@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "memcached": "^2.2.2",
+    "redis": "^2.7.1"
+  }
+}
