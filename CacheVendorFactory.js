@@ -9,7 +9,7 @@ class CacheClientFactory{
 				this.vendor = new redis(host, port);
 				break;
 			case 'memcached':
-				this.vendor = new memcached(host+':'+port);
+				this.vendor = new memcached(host, port);
 				brek;
 			default:
 				this.vendor = new redis(host, port); 	
