@@ -58,7 +58,6 @@ client.getHash("testHashKey")
 		.then(rep => console.log(rep, "respuesta getHashet"))
 		.catch(err=>console.log(err, "error getHash"));
 
-
 client.delete("TestKey")
 		.then(rep => console.log(rep, "respuesta delete"))
 		.catch(err=>console.log(err, "error delete"));
@@ -76,26 +75,24 @@ second_client.set('TestKey', "TestValue")
 			 	.catch(err=>console.log(err, "error set"));
 
 second_client.get('TestKey')
-				.then(rep => console.log(rep, "respuesta get"))
-				.catch(err=>console.log(err, "error get"));
-
+			.then(rep => console.log(rep, "respuesta get"))
+			.catch(err=>console.log(err, "error get"));
 
 second_client.setHash("testHashKey", obj)
-				.then(rep => console.log(rep, "respuesta setHashet"))
-				.catch(err=>console.log(err, "error setHash"));
+			.then(rep => console.log(rep, "respuesta setHashet"))
+			.catch(err=>console.log(err, "error setHash"));
 
 second_client.getHash("testHashKey")
-				.then(rep => console.log(rep, "respuesta getHashet"))
-				.catch(err=>console.log(err, "error getHash"));
-
+			.then(rep => console.log(rep, "respuesta getHashet"))
+			.catch(err=>console.log(err, "error getHash"));
 
 second_client.delete("TestKey")
-				.then(rep => console.log(rep, "respuesta delete"))
-				.catch(err=>console.log(err, "error delete"));
+			.then(rep => console.log(rep, "respuesta delete"))
+			.catch(err=>console.log(err, "error delete"));
 
 second_client.get('TestKey')
-				.then(rep => console.log(rep, "respuesta get"))
-				.catch(err=>console.log(err, "error get"));
+			.then(rep => console.log(rep, "respuesta get"))
+			.catch(err=>console.log(err, "error get"));
 
 ```
 
