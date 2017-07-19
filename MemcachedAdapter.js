@@ -1,18 +1,57 @@
 'use strict'
+let Memcached = require('memcached');
 class MemcachedAdapter {
 	constructor(host, port){
-		this.client = new Memcached(host+":"+memcachedPort);
+		this.memcached = new Memcached(host+':'+port);
 	}
+
+	get(key){
+		 return new Promise((resolve, reject) => {  
+			this.memcached.get(key, (err, reply) => {
+		   	 			if (reply) {
+				      	resolve(reply);
+					   }
+					   else if(err){
+					      reject(err);
+					   }else{
+					   	 reject("The provided key doesn't exist!");
+					   }
+		      			});
+				});
+	}
+
+	set(key, val){
+		return new Promise((resolve, reject) => {  
+			this.memcached.set(key, val, 2592000, err => {
+		   	 			if (err){
+					      reject(err);
+		   	 			}else{
+		   	 				resolve("OK");
+		   	 			}
+					   }
+		      			);
+				});
+	}
+
 
 	getHash(key){
-		memcached.get(key, function (err, data) {
-		  	if(err) return err;
-		    if(data) return data;
-		});
+		return this.get(key);
 	}
 
-	setHash(key, val){
-		memcached.set(key, val, 10000, (err) => { if(err) return err;  });
+	setHash(key, object){
+		return this.set(key, object);
+	}
+
+	delete(key){
+		return new Promise((resolve, reject) => {
+			this.memcached.del(key, function(err) {
+				if (err) {
+					      reject(err);
+					   }else{
+					   	resolve("OK");
+					   }
+        	});
+        });
 	}
 }
 
