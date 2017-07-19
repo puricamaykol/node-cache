@@ -8,4 +8,11 @@ class Cache{
 	get(){}
 
 	set(){}
+
+	getHash(){}
+
+	setHash(){}
+
+	delete(){}
+
 }
