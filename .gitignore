@@ -57,3 +57,7 @@ typings/
 # dotenv environment variables file
 .env
 
+# Sublime Text
+
+node-cache.sublime-project
+node-cache.sublime-workspace
