@@ -1,18 +1,31 @@
 'use strict'
-require('/CacheVendorFactory');
+let CacheClientFactory = require('./CacheClientFactory');
 class Cache{
-	constructor(vendor, host, port){
-		this.client = CacheClientFactory(vendor, host, port);
+	constructor(host, port, vendor){
+		this.client = new CacheClientFactory(host, port, vendor);
 	}
 
-	get(){}
+	get(key){
+		 return this.client.get(key); 
+	}
 
-	set(){}
+	set(key, val){
+		return this.client.set(key, val); 
+	}
 
-	getHash(){}
 
-	setHash(){}
+	getHash(key){
+		return this.client.getHash(key);
+	}
 
-	delete(){}
+	setHash(key, object){
+		return this.client.setHash(key, object);
+	}
+
+	delete(key){
+		return this.client.delete(key);
+	}
 
 }
+
+module.exports = Cache;
