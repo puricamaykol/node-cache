@@ -82,4 +82,4 @@ The road ahead
 
  - Implement auth support
  
- - Create npm package
+ - Create npm package 
