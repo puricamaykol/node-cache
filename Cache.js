@@ -1,30 +1,56 @@
 'use strict'
 let CacheClientFactory = require('./CacheClientFactory');
-class Cache{
-	constructor(host, port, vendor){
-		this.client = new CacheClientFactory(host, port, vendor);
-	}
-
-	get(key){
-		 return this.client.get(key); 
-	}
-
-	set(key, val){
-		return this.client.set(key, val); 
-	}
-
-
-	getHash(key){
-		return this.client.getHash(key);
-	}
-
-	setHash(key, object){
-		return this.client.setHash(key, object);
-	}
-
-	delete(key){
-		return this.client.delete(key);
-	}
+class Cache {
+  /**
+   * 
+   * @param  {String} host   Host IP address
+   * @param  {Integer} port  Port used by the cache server 
+   * @param  {String} vendor 'redis' or 'memcached'
+   */
+  constructor(host, port, vendor) {
+    this.client = new CacheClientFactory(host, port, vendor);
+  }
+  /**
+   * Gets a value by key
+   * @param  {String} key A cache key
+   * @return {Promise} A promise containing the value or an error
+   */
+  get(key) {
+    return this.client.get(key);
+  }
+  /**
+   * Creates a Key and adds a value to it
+   * @param {String} key 
+   * @param {Promise} val A promise containing an OK message or en error
+   */
+  set(key, val) {
+    return this.client.set(key, val);
+  }
+  /**
+   * Gets a hash as a JSON object
+   * @param  {String} key 
+   * @return {Promise}     A promise containing a JSON object or an error
+   */
+  getHash(key) {
+    return this.client.getHash(key);
+  }
+  /**
+   * Stores a JSON Object as a Hash
+   * @param {String} key    
+   * @param {JSON} object to be stored
+   * @return {Promise} Promise containing an OK message or an error
+   */
+  setHash(key, object) {
+    return this.client.setHash(key, object);
+  }
+  /**
+   * Deletes a value by key
+   * @param  {String} key 
+   * @return {Promise}    Promise containing an OK message or an error 
+   */
+  delete(key) {
+    return this.client.delete(key);
+  }
 
 }
 
