@@ -7,5 +7,5 @@ install:
 script:
 - mocha tests/
 services:
-  - redis-server: "4.0.0"
+  - redis-server
   - memcached: "1.4.13"
