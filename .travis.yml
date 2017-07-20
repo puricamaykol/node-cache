@@ -5,7 +5,7 @@ node_js:
 install:
   - npm install
 script:
-- npm test
+- mocha tests/
 services:
-  - redis-server
-  - memcached
+  - redis-server: "4.0.0"
+  - memcached: "1.4.13"

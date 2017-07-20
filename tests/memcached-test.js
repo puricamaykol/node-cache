@@ -9,9 +9,9 @@ describe("#Memcached", function() {
 	describe("#get( ) method", function() {
 		it("Should get a value by given key if the key exists", function() {
 			let client = new memcached("127.0.0.1", 11211);
-			client.set('TestGETKEY', "some_value");
+			return client.set('TestMCGETKEY', "some_value").then(rep=>client.get('TestMCGETKEY').should.eventually.deep.equal("some_value"));
 
-			return client.get('TestGETKEY').should.eventually.deep.equal("some_value");
+			
     	});
     	it("Should reject the promise if given key doesn't exist", function() {
 			let client = new memcached("127.0.0.1", 11211);

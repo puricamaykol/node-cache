@@ -4,7 +4,7 @@
   "description": "Node Adapter for cache",
   "main": "index.js",
   "scripts": {
-    "test": " mocha tests/"
+    "test": "mocha tests/"
   },
   "keywords": [
     "node",
