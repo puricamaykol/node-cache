@@ -43,7 +43,9 @@ API
 ```javascript
 	client.getOrFetch('TestKeyGetFetchMC', done=>{
 		setTimeout(function(){ done("This is the fetched value"); }, 3000);
-}).then(res=>console.log(res)).catch(err=>console.log(err));
+         })
+         .then(res=>console.log(res))
+         .catch(err=>console.log(err));
 
 ```
 
