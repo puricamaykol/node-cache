@@ -1,4 +1,4 @@
-let cache = require('../index.js');
+let cache = require('mpnode-cache');
 
 console.log("memcached");
 

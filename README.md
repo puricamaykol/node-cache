@@ -8,6 +8,12 @@ Promise based cache Node module. It provides a single interface for Redis and Me
 
 ----------
 
+How to install
+-------------
+
+```bash
+ npm install mpnode-cache --save
+```
 
 Methods
 -------------
@@ -36,7 +42,7 @@ Example
 
 ```javascript
 
-let cache = require('./Cache');
+let cache = require('mpnode-cache');
 
 console.log("memcached");
 
@@ -106,3 +112,4 @@ The road ahead
  - Implement auth support
  
  - Create npm package
+
