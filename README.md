@@ -1,7 +1,7 @@
 Node Cache 
 ===================
 
-[![Build Status](https://travis-ci.org/puricamaykol/node-cache.svg?branch=master)](https://travis-ci.org/puricamaykol/node-cache)
+[![Build Status](https://travis-ci.org/puricamaykol/node-cache.svg?branch=master)](https://travis-ci.org/puricamaykol/node-cache)  Integrated With Travis CI
 
 
 Promise based cache Node module. It provides a single interface for Redis and Memcached basic methods.

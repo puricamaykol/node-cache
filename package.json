@@ -1,7 +1,7 @@
 {
-  "name": "node-cache",
+  "name": "mpnode-cache",
   "version": "1.0.0",
-  "description": "Node Adapter for cache",
+  "description": "Promise based cache Node module. It provides a single interface for Redis and Memcached basic methods.",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/"
@@ -22,5 +22,9 @@
     "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
     "mocha": "^3.4.2"
+  },
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/puricamaykol/node-cache.git"
   }
 }

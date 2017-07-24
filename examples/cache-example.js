@@ -1,4 +1,4 @@
-let cache = require('../lib/Cache');
+let cache = require('../index.js');
 
 console.log("memcached");
 
