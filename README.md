@@ -110,4 +110,6 @@ The road ahead
 -------------
 
  - Implement auth support
+ 
+ - Implement getOrFetch( ) method
 
