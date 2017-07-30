@@ -4,7 +4,8 @@
   "description": "Promise based cache Node module. It provides a single interface for Redis and Memcached basic methods.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/"
+    "test": "nyc mocha tests/",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [
     "node",
@@ -21,7 +22,10 @@
   "devDependencies": {
     "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^3.4.2"
+    "coveralls": "^2.13.1",
+    "mocha": "^3.4.2",
+    "nyc": "^11.1.0",
+    "sinon": "^2.4.1"
   },
   "repository": {
     "type": "git",
