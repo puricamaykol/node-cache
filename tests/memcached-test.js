@@ -115,10 +115,6 @@ describe("#Memcached", function() {
         del: function(key, cb) {
           var cb = cb;
           cb(null, 1);
-        },
-        get: function(key, cb) {
-          var cb = cb;
-          cb(null, "some_value");
         }
       };
       let client = new memcached("localhost", 6379, memcachedThirdparty);
@@ -130,10 +126,6 @@ describe("#Memcached", function() {
         del: function(key, cb) {
           var cb = cb;
           cb("There was an error deleting", null);
-        },
-        get: function(key, cb) {
-          var cb = cb;
-          cb(null, "some_value");
         }
       };
       let client = new memcached("localhost", 6379, memcachedThirdparty);
