@@ -119,7 +119,7 @@ describe("#Redis", function() {
         }
       };
       let client = new redis("localhost", 6379, redisThirdparty);
-      client.delete('testDelkey').should.eventually.deep.equal("OK");
+      return client.delete('testDelkey').should.eventually.deep.equal("OK");
     });
     it("Should be rejected if KEY doesn't exist", function() {
       var redisThirdparty = {
@@ -129,17 +129,17 @@ describe("#Redis", function() {
         }
       };
       let client = new redis("localhost", 6379, redisThirdparty);
-      client.delete('testDelkeyDE').should.be.rejectedWith("The provided key doesn't exist!");
+      return  client.delete('testDelkeyDE').should.be.rejectedWith("The provided key doesn't exist!");
     });
     it("Should reject the promise if an error occurs", function() {
       var redisThirdparty = {
-        hmset: function(key, val, cb) {
+        del: function(key, cb) {
           var cb = cb;
           cb("There was an error deleting", null);
         }
       };
       let client = new redis("localhost", 6379, redisThirdparty);
-      return client.setHash('TestsetHashKEY', "some_value_set").should.be.rejectedWith("There was an error deleting");
+      return client.delete('TestsetHashKEY').should.be.rejectedWith("There was an error deleting");
     });
   });
 
