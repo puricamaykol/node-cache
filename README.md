@@ -103,7 +103,7 @@ client.getOrFetch('TestKeyGetFetchMC', (done)=>{
 The road ahead
 -------------
 
+ - Replace with Spyies or Stubs both redis clients methods in unit tests
+
  - Implement auth support
- 
- - Implement getOrFetch( ) method
 
