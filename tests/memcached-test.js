@@ -152,10 +152,6 @@ describe("#Memcached", function() {
         get: function(key, cb) {
           var cb = cb;
           cb("There was an error!", null);
-        },
-        set: function(key, val, cb) {
-          var cb = cb;
-          cb(null, null);
         }
       };
       let client = new memcached("localhost", 6379, memcachedThirdparty);
