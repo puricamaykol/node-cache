@@ -37,7 +37,7 @@ describe("#Memcached", function() {
       var memcachedThirdparty = {
         set: function(key, val, time,  cb) {
           var cb = cb;
-          cb(null, "OK");
+          cb(null);
         }
       };
       let client = new memcached("localhost", 6379, memcachedThirdparty);
@@ -47,7 +47,7 @@ describe("#Memcached", function() {
       var memcachedThirdparty = {
         set: function(key, val, time, cb) {
           var cb = cb;
-          cb("There was an error storing the key", null);
+          cb("There was an error storing the key");
         }
       };
       let client = new memcached("localhost", 6379, memcachedThirdparty);
@@ -76,7 +76,7 @@ describe("#Memcached", function() {
       var memcachedThirdparty = {
         get: function(key, cb) {
           var cb = cb;
-          cb("There was an error", null);
+          cb("There was an error");
         }
       };
       let client = new memcached("localhost", 6379, memcachedThirdparty);
@@ -101,7 +101,7 @@ describe("#Memcached", function() {
       var memcachedThirdparty = {
         set: function(key, val, time, cb) {
           var cb = cb;
-          cb("There was an error storing the key", null);
+          cb("There was an error storing the key");
         }
       };
       let client = new memcached("localhost", 6379, memcachedThirdparty);
@@ -132,4 +132,81 @@ describe("#Memcached", function() {
       return client.delete('TestsetHashKEY').should.be.rejectedWith("There was an error deleting");
     });
   });
+
+  describe("#getOrFetch( ) method", function() {
+    it("Should get a value by given key if the key exists", function() {
+      var memcachedThirdparty = {
+        get: function(key, cb) {
+          var cb = cb;
+          cb(null, "some_value");
+        }
+      };
+      let client = new memcached("localhost", 6379, memcachedThirdparty);
+
+      return client.getOrFetch('TestGetOrFetchKEY', done => {
+      }).should.eventually.deep.equal("some_value");
+    });
+
+    it("Should reject the promise if an error occurs", function() {
+      var memcachedThirdparty = {
+        get: function(key, cb) {
+          var cb = cb;
+          cb("There was an error!", null);
+        },
+        set: function(key, val, cb) {
+          var cb = cb;
+          cb(null, null);
+        }
+      };
+      let client = new memcached("localhost", 6379, memcachedThirdparty);
+
+      return client.getOrFetch('TestGETKEYNotCreated', done => {
+      }).should.be.rejectedWith("There was an error!");
+
+    });
+    it("Should fetch and set value if key doesn't exist", function() {
+      var memcachedThirdparty = {
+        get: function(key, cb) {
+          var cb = cb;
+          cb(null, null);
+        },
+        set: function(key, val, time, cb) {
+          var cb = cb;
+          cb(null);
+        }
+      };
+      let client = new memcached("localhost", 6379, memcachedThirdparty);
+
+      return client.getOrFetch('TestGETKEYNotCreated', done => {
+          done("This is the fetched value");
+      }).should.eventually.deep.equal(
+        {
+          "response": "OK",
+          "key": "TestGETKEYNotCreated",
+          "value": "This is the fetched value"
+        });
+
+    });
+
+    it("Should be rejected if there's an error setting the value", function() {
+      var memcachedThirdparty = {
+        get: function(key, cb) {
+          var cb = cb;
+          cb(null, null);
+        },
+        set: function(key, val, time, cb) {
+          var cb = cb;
+          cb("There was an error!");
+        }
+      };
+      let client = new memcached("localhost", 6379, memcachedThirdparty);
+
+      return client.getOrFetch('TestGETKEYNotCreated', done => {
+          done("This is the fetched value");
+      }).should.be.rejectedWith("There was an error!");
+
+    });
+
+  });
+  
 });

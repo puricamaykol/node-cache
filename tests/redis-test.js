@@ -97,7 +97,7 @@ describe("#Redis", function() {
       let client = new redis("localhost", 6379, redisThirdparty);
       return client.setHash('TestsetHashKEY', "some_value_set").should.eventually.deep.equal("OK");
     });
-    
+
     it("Should reject the promise if an error occurs", function() {
       var redisThirdparty = {
         hmset: function(key, val, cb) {
@@ -129,7 +129,7 @@ describe("#Redis", function() {
         }
       };
       let client = new redis("localhost", 6379, redisThirdparty);
-      return  client.delete('testDelkeyDE').should.be.rejectedWith("The provided key doesn't exist!");
+      return client.delete('testDelkeyDE').should.be.rejectedWith("The provided key doesn't exist!");
     });
     it("Should reject the promise if an error occurs", function() {
       var redisThirdparty = {
@@ -141,6 +141,82 @@ describe("#Redis", function() {
       let client = new redis("localhost", 6379, redisThirdparty);
       return client.delete('TestsetHashKEY').should.be.rejectedWith("There was an error deleting");
     });
+  });
+
+  describe("#getOrFetch( ) method", function() {
+    it("Should get a value by given key if the key exists", function() {
+      var redisThirdparty = {
+        get: function(key, cb) {
+          var cb = cb;
+          cb(null, "some_value");
+        }
+      };
+      let client = new redis("localhost", 6379, redisThirdparty);
+
+      return client.getOrFetch('TestGetOrFetchKEY', done => {
+      }).should.eventually.deep.equal("some_value");
+    });
+
+    it("Should reject the promise if an error occurs", function() {
+      var redisThirdparty = {
+        get: function(key, cb) {
+          var cb = cb;
+          cb("There was an error!", null);
+        },
+        set: function(key, val, cb) {
+          var cb = cb;
+          cb(null, null);
+        }
+      };
+      let client = new redis("localhost", 6379, redisThirdparty);
+
+      return client.getOrFetch('TestGETKEYNotCreated', done => {
+      }).should.be.rejectedWith("There was an error!");
+
+    });
+    it("Should fetch and set value if key doesn't exist", function() {
+      var redisThirdparty = {
+        get: function(key, cb) {
+          var cb = cb;
+          cb(null, null);
+        },
+        set: function(key, val, cb) {
+          var cb = cb;
+          cb(null, "OK");
+        }
+      };
+      let client = new redis("localhost", 6379, redisThirdparty);
+
+      return client.getOrFetch('TestGETKEYNotCreated', done => {
+          done("This is the fetched value");
+      }).should.eventually.deep.equal(
+        {
+          "response": "OK",
+          "key": "TestGETKEYNotCreated",
+          "value": "This is the fetched value"
+        });
+
+    });
+
+    it("Should be rejected if there's an error setting the value", function() {
+      var redisThirdparty = {
+        get: function(key, cb) {
+          var cb = cb;
+          cb(null, null);
+        },
+        set: function(key, val, cb) {
+          var cb = cb;
+          cb("There was an error!", null);
+        }
+      };
+      let client = new redis("localhost", 6379, redisThirdparty);
+
+      return client.getOrFetch('TestGETKEYNotCreated', done => {
+          done("This is the fetched value");
+      }).should.be.rejectedWith("There was an error!");
+
+    });
+
   });
 
 });
