@@ -15,16 +15,6 @@ How to install
  npm install mpnode-cache --save
 ```
 
-Methods
--------------
-
- - set
- - get
- - setHash (Stores a JSON Object)
- - getHash (Gets a JSON Object)
- - delete
- - getOrFetch
-
 API
 -------------
 
