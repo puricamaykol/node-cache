@@ -28,17 +28,29 @@ Methods
 API
 -------------
 
-    set([String] key, [String] val) : Promise
+    
 
-    get([String] key) : Promise
+ - `set([String] key, [String] val) : Promise`
 
-    setHash([String] key, [JSON] Object) : Promise
+   
 
-    getHash([String] key) : Promise
+ - `get([String] key) : Promise`
 
-    delete([String] key): Promise
+    
 
-    getOrFetch([String] key, [Function] callback(done)): Promise
+ - `setHash([String] key, [JSON] Object) : Promise`
+
+    
+
+ - `getHash([String] key) : Promise`
+
+    
+
+ - `delete([String] key): Promise`
+
+    
+
+ - `getOrFetch([String] key, [Function] callback(done)): Promise`
 
 ```javascript
 client.getOrFetch('TestKeyGetFetchMC', done=>{
@@ -106,4 +118,5 @@ The road ahead
  - Replace with Spyies or Stubs both redis clients methods in unit tests
 
  - Implement auth support
+
 
